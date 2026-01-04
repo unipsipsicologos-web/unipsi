@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Plataforma UniPsi | Rede Profissional</title>
+<title>UniPsi | Rede Profissional</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;900&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
   :root {
@@ -27,10 +27,27 @@
   header { background: white; padding: 1rem 2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
   .logo-container { display: flex; align-items: center; gap: 15px; }
   .logo-svg { width: 45px; height: 45px; fill: var(--primary-color); }
-  .brand-name { font-family: 'Montserrat', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--primary-color); }
-  .brand-tagline { font-size: 0.8rem; color: #666; }
+  
+  /* ESTILO UNIPSI - MODERNO E 3D */
+  .brand-3d { 
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 2.5rem; /* Tamanho maior */
+    font-weight: 900; 
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-left: 5px;
+    /* Efeito 3D e Profundidade */
+    text-shadow: 3px 3px 0px #DAA520, 5px 5px 10px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+    background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+  }
+  .brand-3d:hover { transform: scale(1.02) translateY(-2px); }
 
-  /* Nav */
+  /* Nav Desktop */
   .nav-tabs { display: flex; gap: 5px; margin-top: 1rem; flex-wrap: wrap; }
   .nav-btn { background: none; border: none; padding: 10px 15px; font-weight: 600; color: #666; cursor: pointer; border-bottom: 3px solid transparent; transition: 0.3s; font-size: 0.9rem; }
   .nav-btn.active { color: var(--primary-color); border-bottom-color: var(--primary-color); }
@@ -51,7 +68,7 @@
   input:focus, textarea:focus { outline: none; border-color: var(--primary-color); }
   input[readonly] { background-color: #eee; cursor: not-allowed; }
 
-  /* Mostrar Senha - Profissional com SVG - CORRIGIDO */
+  /* Mostrar Senha - Profissional com SVG */
   .password-container { position: relative; }
   .password-container input { padding-right: 50px; }
   .toggle-password { 
@@ -74,10 +91,7 @@
   .toggle-password:hover { opacity: 0.7; }
   .toggle-password svg { width: 20px; height: 20px; fill: var(--primary-color); }
   
-  /* Correção específica para campos com label */
-  .form-group.password-container .toggle-password {
-    top: calc(50% + 14px);
-  }
+  .form-group.password-container .toggle-password { top: calc(50% + 14px); }
 
   /* Checkbox Manter Conectado */
   .remember-me { display: flex; align-items: center; gap: 8px; margin-bottom: 15px; margin-top: 10px; }
@@ -231,17 +245,46 @@
   th { background-color: #f8f9fa; color: var(--primary-color); }
   .table-container { overflow-x: auto; margin-top: 10px; margin-bottom: 30px;}
 
-  
-
   /* Jitsi Meet Container */
   .jitsi-container { width: 100%; height: 600px; border-radius: 8px; overflow: hidden; }
 
-  /* Responsividade Mobile */
+  /* Responsividade Mobile - Menu Otimizado */
   @media (max-width: 768px) {
     header { padding: 1rem; }
-    .nav-tabs { flex-direction: column; gap: 0; margin-top: 0.5rem; }
-    .nav-btn { padding: 8px 10px; font-size: 0.8rem; border-bottom: none; border-right: 3px solid transparent; }
-    .nav-btn.active { border-right-color: var(--primary-color); border-bottom: none; }
+    
+    /* MENU RESPONSIVO MOBILE - SCROLL HORIZONTAL */
+    .nav-tabs { 
+        flex-direction: row; /* Mantém linha */
+        flex-wrap: nowrap; /* Não quebra linha */
+        overflow-x: auto; /* Permite scroll lateral */
+        gap: 10px; 
+        margin-top: 1rem; 
+        padding-bottom: 10px; /* Espaço para scrollbar (se houver) */
+        -webkit-overflow-scrolling: touch; /* Scroll suave no iOS */
+        width: 100%;
+        justify-content: flex-start;
+        scrollbar-width: none; /* Firefox: oculta barra */
+    }
+    .nav-tabs::-webkit-scrollbar { display: none; /* Chrome/Safari: oculta barra */ }
+    
+    .nav-btn { 
+        padding: 8px 16px; 
+        font-size: 0.85rem; 
+        border-bottom: none; 
+        border: 1px solid #eee;
+        border-radius: 20px; /* Formato pílula para mobile */
+        white-space: nowrap; /* Texto numa linha só */
+        background: #fff;
+        flex: 0 0 auto; /* Impede que o botão encolha */
+    }
+    
+    .nav-btn.active { 
+        background: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+        border-bottom: 1px solid var(--primary-color); 
+    }
+
     main { padding: 0 10px; margin: 15px auto; }
     .card { padding: 15px; }
     .chat-container { height: 400px; }
@@ -257,10 +300,10 @@
   
   @media (max-width: 480px) {
     header { flex-direction: column; gap: 10px; padding: 0.8rem; }
-    .brand-name { font-size: 1.1rem; }
-    .nav-tabs { width: 100%; flex-direction: row; gap: 0; }
-    .nav-btn { flex: 1; padding: 6px 5px; font-size: 0.65rem; border-right: none; border-bottom: 3px solid transparent; }
-    .nav-btn.active { border-bottom-color: var(--primary-color); }
+    
+    /* Ajuste para logo no topo mobile */
+    .brand-3d { font-size: 2rem; margin-top: 5px; }
+    
     main { padding: 0 5px; margin: 10px auto; }
     .card { padding: 10px; }
     .store-grid { grid-template-columns: 1fr; }
@@ -297,8 +340,7 @@
       <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 2c1.66 0 3 1.34 3 3v3h2V7c0-2.76-2.24-5-5-5S7 4.24 7 7v3h2V7c0-1.66 1.34-3 3-3zm3 11v2h-2v-2h-2v2H9v-2H7v4h10v-4h-2z"/>
     </svg>
     <div>
-        <div class="brand-name">Plataforma UniPsi</div>
-        <div class="brand-tagline">Rede Profissional de Psicólogos</div>
+        <div class="brand-3d">UniPsi</div>
     </div>
   </div>
   <nav class="nav-tabs auth-hidden" id="mainNav">
@@ -532,7 +574,6 @@
     </form>
   </section>
 
-  <!-- PAINEL DO GESTOR - NOVA INTERFACE -->
   <section id="adminView" class="card">
     <div id="adminAuthContainer" style="max-width:400px; margin:50px auto;">
       <h3 style="text-align:center; margin-bottom:20px; color: var(--primary-color);">Acesso ao Painel do Gestor</h3>
@@ -569,19 +610,16 @@
         </div>
         
         <div class="admin-content">
-          <!-- Aba Membros Aprovados -->
           <div id="tab-membros" class="admin-section active">
             <h4 style="margin-bottom:15px; color:var(--primary-color);">Membros Aprovados</h4>
             <div id="membrosAprovados"></div>
           </div>
           
-          <!-- Aba Pendentes -->
           <div id="tab-pendentes" class="admin-section">
             <h4 style="margin-bottom:15px; color:var(--warning);">Aguardando Aprovação</h4>
             <div id="membrosPendentes"></div>
           </div>
           
-          <!-- Aba Staff -->
           <div id="tab-staff" class="admin-section">
             <h4 style="margin-bottom:15px; color:var(--info);">Candidatos à Staff</h4>
             <div id="candidatosStaff"></div>
@@ -594,7 +632,6 @@
 
 
 
-<!-- Modais -->
 <div id="editPostModal" class="modal-overlay">
     <div class="modal-content">
         <h3>Editar Publicação</h3>
@@ -610,7 +647,6 @@
     </div>
 </div>
 
-<!-- Modal para Mudar Cargo -->
 <div id="changeRoleModal" class="modal-overlay">
     <div class="modal-content">
         <h3 style="color:var(--primary-color);">Mudar Cargo</h3>
@@ -636,7 +672,6 @@
     </div>
 </div>
 
-<!-- Modal para Reset de Senha -->
 <div id="resetPasswordModal" class="modal-overlay">
     <div class="modal-content">
         <h3 style="color:var(--warning);">Reset de Senha</h3>
@@ -661,7 +696,6 @@
     </div>
 </div>
 
-<!-- Modal para Editar Membro -->
 <div id="editMemberModal" class="modal-overlay">
     <div class="modal-content">
         <h3 style="color:var(--info);">Editar Membro</h3>
@@ -669,6 +703,7 @@
         <div class="form-group">
             <label>Nome</label>
             <input type="text" id="editMemberName" readonly>
+            <small style="color:#666; font-size:0.75rem;" id="founderEditNote"></small>
         </div>
         <div class="form-group">
             <label>E-mail</label>
@@ -685,7 +720,7 @@
     </div>
 </div>
 
-<footer>&copy; 2025 Plataforma UniPsi. Desenvolvido por Macs Wellison.</footer>
+<footer>&copy; 2025 UniPsi. Desenvolvido por Macs Wellison.</footer>
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
@@ -764,10 +799,11 @@
     return v.substring(0, 15);
   };
 
+  // ATUALIZADO: Validação CRP expandida para aceitar mais dígitos
   const mascaraCRP = (v) => {
     v = v.replace(/\D/g,"");
     v = v.replace(/^(\d{2})(\d)/, "$1/$2");
-    return v.substring(0, 8);
+    return v.substring(0, 12); // Aumentado limite para permitir CRPs maiores
   };
 
   document.querySelectorAll('.mask-tel').forEach(i => i.oninput = (e) => e.target.value = mascaraTelefone(e.target.value));
@@ -1330,12 +1366,27 @@
       });
   }
 
-  // Funções globais para os botões
+  // ATUALIZADO: Funções globais para os botões e PERMISSÃO DE FOUNDER
   window.openEditMember = (id, nome, email, whatsapp) => {
       $('editMemberId').value = id;
       $('editMemberName').value = nome;
       $('editMemberEmail').value = email;
       $('editMemberWhatsapp').value = whatsapp;
+      
+      // Lógica para liberar edição se for Founder
+      const nameInput = $('editMemberName');
+      const note = $('founderEditNote');
+      
+      if (adminAuthenticated && adminLevel === 'Fundador') {
+          nameInput.removeAttribute('readonly');
+          nameInput.style.border = "1px solid var(--secondary-color)";
+          note.textContent = "Modo Founder: Edição de nome liberada.";
+      } else {
+          nameInput.setAttribute('readonly', true);
+          nameInput.style.border = "1px solid #ddd";
+          note.textContent = "";
+      }
+      
       $('editMemberModal').style.display = 'flex';
   };
 
@@ -1410,7 +1461,7 @@
       });
   }
 
-  // Modal Editar Membro
+  // Modal Editar Membro - ATUALIZADO COM SALVAMENTO DE NOME (FOUNDER)
   $('btnCancelEditMember').onclick = () => $('editMemberModal').style.display = 'none';
   $('btnConfirmEditMember').onclick = () => {
       const memberId = $('editMemberId').value;
@@ -1418,6 +1469,12 @@
           email: $('editMemberEmail').value,
           whatsapp: $('editMemberWhatsapp').value
       };
+      
+      // Se for Founder, salva também o nome
+      if (adminAuthenticated && adminLevel === 'Fundador') {
+          updates.nome = $('editMemberName').value;
+      }
+      
       update(ref(db, `membros/${memberId}`), updates).then(() => {
           alert("Membro atualizado!");
           $('editMemberModal').style.display = 'none';
